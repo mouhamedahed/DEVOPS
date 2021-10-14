@@ -1,15 +1,11 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Entreprise implements Serializable{
@@ -28,55 +24,61 @@ public class Entreprise implements Serializable{
 	
 	
 	private String raisonSocial;
-	
-	@OneToMany(mappedBy="entreprise", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<Departement> departements;
+
 
 	public Entreprise() {
 		super();
 	}
 
-	public Entreprise(String name, String raisonSocial) {
-		this.name = name;
-		this.raisonSocial = raisonSocial;
-	}
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	public String getRaisonSocial() {
 		return raisonSocial;
 	}
 
+
 	public void setRaisonSocial(String raisonSocial) {
 		this.raisonSocial = raisonSocial;
 	}
 
-	public List<Departement> getDepartements() {
-		return departements;
+
+	public Entreprise(Long id, String name, String raisonSocial) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.raisonSocial = raisonSocial;
 	}
 
-	public void setDepartements(List<Departement> departements) {
-		this.departements = departements;
+
+	public Entreprise(String name, String raisonSocial) {
+		super();
+		this.name = name;
+		this.raisonSocial = raisonSocial;
 	}
-	
-	
-	public void addDepartement(Departement departement){
-		departement.setEntreprise(this);
-		this.departements.add(departement);
+
+
+	@Override
+	public String toString() {
+		return "Entreprise [id=" + id + ", name=" + name + ", raisonSocial=" + raisonSocial + "]";
 	}
 
 

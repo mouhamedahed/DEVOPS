@@ -1,6 +1,7 @@
 package tn.esprit.spring.services;
 
-import org.apache.log4j.Logger;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import tn.esprit.spring.repository.EmployeRepository;
 
 @Service
 public class EmployeService implements EmployeServiceInterface {
-	private static final Logger l = Logger.getLogger(EmployeService.class);
+	//private static final Logger l = Logger.getLogger(EmployeService.class);
 	@Autowired
 	EmployeRepository empRep ;
 	@Autowired
@@ -21,13 +22,13 @@ public class EmployeService implements EmployeServiceInterface {
 	@Override
 	public int ajouterEmploye(Employe employe) {
 		try{
-			l.info("in ajouterEmploye( )"+employe.toString());
-			l.debug("Je viens de lancer la Save. " + empRep.save(employe));	
+			//l.info("in ajouterEmploye( )"+employe.toString());
+			//l.debug("Je viens de lancer la Save. " + empRep.save(employe));	
 		
 		
 		}catch(Exception e)
 		{ 
-			l.error("Erreur dans getAllPrducts() : " + e);
+			//l.error("Erreur dans getAllPrducts() : " + e);
 			
 		}
 		

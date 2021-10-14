@@ -8,18 +8,34 @@ import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EntrepriseRepository;
-
+import org.apache.log4j.Logger;
 @Service
 public class EntrepriseService implements EntrepriseServiceInterface  {
-	
+	private static final Logger l = Logger.getLogger(EmployeService.class);
+
 	@Autowired
 	EntrepriseRepository repEntre ;
 	@Autowired
 	DepartementRepository DepRep ;
 	@Override
 	public int ajouterEntreprise(Entreprise entre) {
-		repEntre.save(entre);
+			
+		
+		try{
+			l.info("in ajouterEntreprise( )"+entre.toString());
+			l.debug("Je viens de lancer la Save. " + repEntre.save(entre));	
+		
+		
+		}catch(Exception e)
+		{ 
+			l.error("Erreur dans getAllEntreprises() : " + e);
+			
+		}
+		
 		return entre.getId().intValue();
+		
+		
+		
 	}
 	
 	@Override

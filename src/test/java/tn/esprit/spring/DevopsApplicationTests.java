@@ -4,28 +4,28 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import tn.esprit.spring.entities.Employe;
-import tn.esprit.spring.services.EmployeServiceInterface;
+import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.services.EntrepriseServiceInterface;
 
 @SpringBootTest
 class DevopsApplicationTests {
 
 	@Autowired
-	EmployeServiceInterface serv;
+	EntrepriseServiceInterface serv;
 	
 	@Test
 	void contextLoads() {
 		
 		
-		Employe emp =new Employe(
+		Entreprise entrep =new Entreprise(
 				
-				"ahed", "mouhamed", "mouhamed.ahed@esprit.tn",true
+			"esprit","facebook"
 				
 				);
 		
-		serv.ajouterEmploye(emp);
+		serv.ajouterEntreprise(entrep);
 		
-		emp.toString();
+		entrep.toString();
 		
 		
 	}
