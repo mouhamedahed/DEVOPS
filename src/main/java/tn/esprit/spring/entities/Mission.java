@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Mission implements Serializable {
 
+	
+
 	private static final long serialVersionUID = -5369734855993305723L;
 
 	@Id
@@ -80,7 +82,12 @@ public class Mission implements Serializable {
 	public void setTimesheets(List<Timesheet> timesheets) {
 		this.timesheets = timesheets;
 	}
-	
+	public Mission(String name, String description, Departement departement) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.departement = departement;
+	}
 	
 
 }

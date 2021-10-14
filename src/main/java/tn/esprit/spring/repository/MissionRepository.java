@@ -6,4 +6,5 @@ import tn.esprit.spring.entities.Mission;
 
 public interface MissionRepository extends CrudRepository<Mission,Long>{
 	Mission findById(int b);
+	
 }
