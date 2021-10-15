@@ -1,11 +1,9 @@
 package tn.esprit.spring.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 
 @Entity
-public class MissionExterne extends Mission implements Serializable {
+public class MissionExterne extends Mission {
 	
 	private static final long serialVersionUID = -3046278688391172322L;
 	

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,7 +18,7 @@ public class Contrat implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private int reference;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
@@ -26,7 +27,8 @@ public class Contrat implements Serializable {
 	
 	private float salaire;
 	
-
+	@OneToOne
+	private Employe employe;
 
 	public Contrat() {
 		super();
@@ -47,7 +49,13 @@ public class Contrat implements Serializable {
 		this.dateDebut = dateDebut;
 	}
 
+	public int getReference() {
+		return reference;
+	}
 
+	public void setReference(int reference) {
+		this.reference = reference;
+	}
 
 	public String getTypeContrat() {
 		return typeContrat;
@@ -61,20 +69,16 @@ public class Contrat implements Serializable {
 		return salaire;
 	}
 
-	
-	
 	public void setSalaire(float salaire) {
 		this.salaire = salaire;
 	}
 
-
-
-	public Long getId() {
-		return id;
+	public Employe getEmploye() {
+		return employe;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
 	}
 	
 	
