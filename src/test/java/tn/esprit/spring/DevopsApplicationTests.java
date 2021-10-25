@@ -15,16 +15,25 @@ class DevopsApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		
-		
+	
 		Employe emp =new Employe(
 				"ahed", "mouhamed", "mouhamed.ahed@esprit.tn",true
 				);
-
+        //ajouterEmploye
 		serv.ajouterEmploye(emp);
-		emp.toString();
-		serv.deleteEmployeById(emp.getId());
+
+		
+		
+		//mettreAjourEmailByEmployeId 
+		
+		String email="ahedmouhamed@gmail.com";
+		int employeId=emp.getId();
+		
 		 
+		serv.mettreAjourEmailByEmployeId(email, employeId);
+		
+		//deleteEmployeById
+		serv.deleteEmployeById(emp.getId());
 		
 	}
 	
