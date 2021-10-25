@@ -1,11 +1,24 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
@@ -15,22 +28,55 @@ public class Employe implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 	
 	private String prenom;
 	
 	private String nom;
 	
-
+	//@Column(unique=true)
 	private String email;
 
 	private boolean isActif;
-
-	public Long getId() {
+	
+	@Enumerated(EnumType.STRING)
+	//@NotNull
+	private Role role;
+	
+	//@JsonBackReference  
+	@JsonIgnore
+	@ManyToMany(mappedBy="employes",fetch=FetchType.EAGER )
+	//@NotNull
+	private List<Departement> departements;
+	
+	@JsonIgnore
+	//@JsonBackReference
+	@OneToOne(mappedBy="employe")
+	private Contrat contrat;
+	
+	@JsonIgnore
+	//@JsonBackReference
+	@OneToMany(mappedBy="employe")
+	private List<Timesheet> timesheets;
+	
+	
+	public Employe() {
+		super();
+	}
+	
+	public Employe(String nom, String prenom, String email, boolean isActif, Role role) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.isActif = isActif;
+		this.role = role;
+	}
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -66,35 +112,38 @@ public class Employe implements Serializable {
 		this.isActif = isActif;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Role getRole() {
+		return role;
 	}
 
-	@Override
-	public String toString() {
-		return "Employe [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", email=" + email + ", isActif=" + isActif
-				+ "]";
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
-	public Employe(Long id, String prenom, String nom, String email, boolean isActif) {
-		super();
-		this.id = id;
-		this.prenom = prenom;
-		this.nom = nom;
-		this.email = email;
-		this.isActif = isActif;
+	public List<Departement> getDepartements() {
+		return departements;
 	}
 
-	public Employe(String prenom, String nom, String email, boolean isActif) {
-		super();
-		this.prenom = prenom;
-		this.nom = nom;
-		this.email = email;
-		this.isActif = isActif;
+	public void setDepartements(List<Departement> departement) {
+		this.departements = departement;
+	}
+
+	public Contrat getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Contrat contrat) {
+		this.contrat = contrat;
+	}
+
+	public List<Timesheet> getTimesheets() {
+		return timesheets;
+	}
+
+	public void setTimesheets(List<Timesheet> timesheets) {
+		this.timesheets = timesheets;
 	}
 	
-
-
-
+	
 	
 }

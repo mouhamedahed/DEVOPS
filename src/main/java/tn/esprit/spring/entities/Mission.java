@@ -7,20 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Mission implements Serializable {
 
 	private static final long serialVersionUID = -5369734855993305723L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 	
 	private String name;
 	
@@ -42,11 +39,11 @@ public class Mission implements Serializable {
 	}
 	
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -69,6 +66,7 @@ public class Mission implements Serializable {
 	public Departement getDepartement() {
 		return departement;
 	}
+
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}

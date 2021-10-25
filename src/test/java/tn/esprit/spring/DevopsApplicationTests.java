@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.spring.entities.Entreprise;
-import tn.esprit.spring.services.EntrepriseServiceInterface;
+import tn.esprit.spring.services.IEntrepriseService;
 
 @SpringBootTest
 class DevopsApplicationTests {
 
 	@Autowired
-	EntrepriseServiceInterface serv;
+	IEntrepriseService serv;
 	
 	@Test
 	void contextLoads() {
@@ -24,6 +24,7 @@ class DevopsApplicationTests {
 				);
 		
 		serv.ajouterEntreprise(entrep);
+		serv.deleteEntrepriseById(entrep.getId());
 		
 		entrep.toString();
 		

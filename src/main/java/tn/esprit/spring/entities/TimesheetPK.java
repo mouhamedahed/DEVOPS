@@ -12,9 +12,9 @@ public class TimesheetPK implements Serializable {
 
 	private static final long serialVersionUID = 5377539445871317492L;
 
-	private Long idMission;
+	private int idMission;
 	
-	private Long idEmploye;
+	private int idEmploye;
 	
 	//Choisir le TemporalType selon le besoin metier
 	@Temporal(TemporalType.DATE)
@@ -28,7 +28,7 @@ public class TimesheetPK implements Serializable {
 		super();
 	}
 	
-	public TimesheetPK(Long idMission, Long idEmploye, Date dateDebut, Date dateFin) {
+	public TimesheetPK(int idMission, int idEmploye, Date dateDebut, Date dateFin) {
 		super();
 		this.idMission = idMission;
 		this.idEmploye = idEmploye;
@@ -38,16 +38,16 @@ public class TimesheetPK implements Serializable {
 
 	//Pour que hibernate peut comparer deux objets (par exemple : recherche de l'objet dans le persistenceContext), 
 	//Il doit pouvoir comparer les primary key des deux entites
-	//Vu que l'entite a une clÃ© composÃ©, on doit implementer la methode equal.
-	//Utiliser l'IDE pour gÃ©nÃ©rer le equal et le hashcode
+	//Vu que l'entite a une clé composé, on doit implementer la methode equal.
+	//Utiliser l'IDE pour générer le equal et le hashcode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dateDebut == null) ? 0 : dateDebut.hashCode());
 		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
-		result = (int) (prime * result + idEmploye);
-		result = (int) (prime * result + idMission);
+		result = prime * result + idEmploye;
+		result = prime * result + idMission;
 		return result;
 	}
 
@@ -77,15 +77,15 @@ public class TimesheetPK implements Serializable {
 		return true;
 	}
 
-	public void setIdMission(Long idMission) {
+	public void setIdMission(int idMission) {
 		this.idMission = idMission;
 	}
 
-	public Long getIdEmploye() {
+	public int getIdEmploye() {
 		return idEmploye;
 	}
 
-	public void setIdEmploye(Long idEmploye) {
+	public void setIdEmploye(int idEmploye) {
 		this.idEmploye = idEmploye;
 	}
 
@@ -105,10 +105,8 @@ public class TimesheetPK implements Serializable {
 		this.dateFin = dateFin;
 	}
 
-	public Long getIdMission() {
+	public int getIdMission() {
 		return idMission;
 	}
-
-
 
 }
