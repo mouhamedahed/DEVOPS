@@ -67,8 +67,8 @@ public class RestControlEntreprise {
 	public int ajouterDepartement(@RequestBody Departement dep) {
 		return ientrepriseservice.ajouterDepartement(dep);
 	}
-	
- 	 // http://localhost:8081/SpringMVC/servlet/getAllDepartementsNamesByEntreprise/1
+	 
+ 	 // http://localhost:8081/Spr ingMVC/servlet/getAllDepartementsNamesByEntreprise/1
     @GetMapping(value = "getAllDepartementsNamesByEntreprise/{identreprise}")
     @ResponseBody
 	public List<String> getAllDepartementsNamesByEntreprise(@PathVariable("identreprise") int entrepriseId) {
