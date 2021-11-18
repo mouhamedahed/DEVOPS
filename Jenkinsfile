@@ -1,0 +1,53 @@
+pipeline {
+	agent any 
+	
+	environment { 
+        registry = "ghassengataa/devops" 
+        registryCredential = 'dockerHub'
+        dockerImage = '' 
+    }
+
+
+	stages{
+			
+			stage('Clean Package Test'){
+					steps{
+						bat "mvn clean package"
+						bat "mvn test"
+					}				
+				}
+				
+			stage('Sonar Analyse'){
+				steps{
+                    bat "mvn sonar:sonar"
+                  }
+            }
+
+            stage('Nexus Deploy'){
+				steps{
+					bat "mvn deploy"
+				}				
+			}
+
+			stage('Building Image'){
+				steps{
+					script{
+						dockerImage = docker.build registry + ":$BUILD_NUMBER"
+					}
+				}				
+			}
+
+			stage('Deploy Image'){
+				steps{
+					script{
+						docker.withRegistry( '', registryCredential ) 
+                        {dockerImage.push()}
+					}
+				}
+			}
+							
+		
+			
+		}
+	} 
+w
