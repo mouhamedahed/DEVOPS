@@ -17,17 +17,17 @@ pipeline {
 					}				
 				}
 				
-			stage('Sonar Analyse'){
-				steps{
-                    bat "mvn sonar:sonar"
-                  }
+			stage('Sonar'){
+            steps {
+                bat "mvn sonar:sonar -DskipTests=true"
             }
+        }
 
-            stage('Nexus Deploy'){
-				steps{
-					bat "mvn deploy"
-				}				
-			}
+            stage('Nexus'){
+            steps {
+                bat "mvn clean package -Dmaven.test.failure.ignore=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=DEVOPS -Dversion=1.2 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/DEVOPS-1.2.jar"
+            }
+        }
 
 			stage('Building Image'){
 				steps{
